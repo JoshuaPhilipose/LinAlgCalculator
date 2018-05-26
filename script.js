@@ -1,11 +1,15 @@
 function createMatrix() {
-    var cell = document.createElement("textarea");
-    document.getElementById('matrix').appendChild(cell);
-}
+    var rows = document.getElementById("matrixRowsSelect").value;
+    var cols = document.getElementById("matrixColsSelect").value;
+    var cell1 = '<input type="number" id="'
+    var cell2 = '">'
+    var adder = ''
 
-// var form = document.getElementById("createMatrix");
-//
-// form.addEventListener("submit",function(e){
-//     document.getElementById('matrix').appendChild(cell);
-//     e.preventDefault();
-// });
+    for (var i = 0; i < rows; i++) {
+        for (var j = 0; j < cols; j++) {
+            adder += cell1 + i + j + cell2
+        }
+        adder += '<br>'
+    }
+    document.getElementById('matrix').innerHTML = adder;
+}
