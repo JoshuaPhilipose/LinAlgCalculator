@@ -14,23 +14,36 @@ function createMatrix() {
     document.getElementById('matrix').innerHTML = adder;
 }
 
+// window.onload = function() {
+//     // setup the button click
+//     document.getElementById("calculate").onclick = function() {
+//         calculate()
+//     };
+// }
+
 function calculate() {
+    document.getElementById('results').innerHTML = "Calculating...";
     var matrix = [];
-    var cells = document.getElementById('matrix').getElementsByTagName('input');
-    var matrixJSON = '{"matrix" : "[';
-    for (var i = 0; i < cells.length; i++) {
+    // var cells = document.getElementById('matrix').getElementsByTagName('input');
+    // var matrixJSON = '{"matrix" : "[';
+    //package json with rows, cols, and values sections
+    // for (var i = 0; i < cells.length; i++) {
+    //
+    // }
+    // matrixJSON += ']"}';
+    // matrix.push(matrixJSON);
+    var test = '{"rows" : 3, "cols" : 3, "values" : "1,2,3,4,5,6,7,8,9"}'
+    matrix.push(test);
 
-    }
-    matrixJSON += ']"}';
-    matrix.push(matrixJSON);
-    rref(matrix)
+    // ajax the JSON to the server CLEARLY NOT WORKING
+    // $.post("rref", matrix);
+    // rref(matrix);
 }
 
-function rref(matrix) {
-    // ajax the JSON to the server
-    $.post("rref", matrix, function(result){
-        document.getElementById('results').innerHTML = result;
-    });
+// function rref(matrix) {
+    // document.getElementById('results').innerHTML = result;
     // stop link reloading the page
-    event.preventDefault();
-}
+    // event.preventDefault();
+    // var resultMatrix = '{{ RREFresult }}'; //= '[0]'
+    // document.getElementById('results').innerHTML = resultMatrix;
+// }
