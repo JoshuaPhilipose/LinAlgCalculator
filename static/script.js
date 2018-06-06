@@ -14,13 +14,6 @@ function createMatrix() {
     document.getElementById('matrix').innerHTML = adder;
 }
 
-// window.onload = function() {
-//     // setup the button click
-//     document.getElementById("calculate").onclick = function() {
-//         calculate()
-//     };
-// }
-
 function calculate() {
     document.getElementById('results').innerHTML = "Calculating...";
     var matrix = [];
@@ -32,18 +25,42 @@ function calculate() {
     // }
     // matrixJSON += ']"}';
     // matrix.push(matrixJSON);
-    var test = '{"rows" : 3, "cols" : 3, "values" : "1,2,3,4,5,6,7,8,9"}'
-    matrix.push(test);
 
-    // ajax the JSON to the server CLEARLY NOT WORKING
-    // $.post("rref", matrix);
-    // rref(matrix);
+    if (validateMatrix()) {
+        var matrixData = {
+            // "first_name": $("#first_name").val(),
+            // "last_name": $("#last_name").val(),
+            // "gt_id": $("#gtid").val(),
+            // "num_rush_nights": 1,
+            // "email": $("#email").val(),
+            // "major": $("#major").val(),
+            // "year": $("#year").val(),
+            // "phone_no": $("#phonenumber").val(),
+            // "texting": $("#cantext").val(),
+            // "dorm": $("#residence").val(),
+            // "rush_buddy": $("#buddy").val(),
+            // "rush_source": $("#howhear").val(),
+            // "akpsi_friend": $("#AKPsiFriendName").val(),
+            // "other_input": $("#OtherInput").val(),
+            "photo_url": "",
+            "status": "Mid-Cloud",
+            "rush_night_2": "true"
+        };
+        var test = {"rows" : 3, "cols" : 3, "values" : "1,2,3,4,5,6,7,8,9"};
+        matrix.push(test);
+
+        //MUST PUT FULL URL
+        $.ajax({
+            url: 'http://127.0.0.1:5000/rref',
+            type: 'POST',
+            data: matrix
+        });
+    } else {
+        document.getElementById('results').innerHTML = 'Invalid matrix, bub';
+    }
+
 }
 
-// function rref(matrix) {
-    // document.getElementById('results').innerHTML = result;
-    // stop link reloading the page
-    // event.preventDefault();
-    // var resultMatrix = '{{ RREFresult }}'; //= '[0]'
-    // document.getElementById('results').innerHTML = resultMatrix;
-// }
+function validateMatrix() {
+    return true;
+}
