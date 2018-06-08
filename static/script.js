@@ -49,12 +49,22 @@ function calculate() {
         var test = {"rows" : 3, "cols" : 3, "values" : "1,2,3,4,5,6,7,8,9"};
         matrix.push(test);
 
-        //MUST PUT FULL URL
+        // MUST PUT FULL URL
         $.ajax({
             url: 'http://127.0.0.1:5000/rref',
             type: 'POST',
-            data: matrix
+            data: matrix,
+            success: function(data) {
+                document.getElementById('results').innerHTML = data;
+            }
         });
+
+        // var request = new XMLHttpRequest();
+        // request.open('POST', 'http://127.0.0.1:5000/rref', true);
+        // request.onload = function() {
+        //     document.getElementById('results').innerHTML = request.responseText;
+        // };
+        // request.send()
     } else {
         document.getElementById('results').innerHTML = 'Invalid matrix, bub';
     }
