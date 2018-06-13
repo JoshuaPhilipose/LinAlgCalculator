@@ -12,6 +12,7 @@ function createMatrix() {
         adder += '<br><br>';
     }
     document.getElementById('matrix').innerHTML = adder;
+    var calculateButton = ''
 }
 
 function calculate() {
@@ -53,7 +54,8 @@ function calculate() {
         $.ajax({
             url: 'http://127.0.0.1:5000/rref',
             type: 'POST',
-            data: matrix,
+            data: JSON.stringify(test),
+            //contentType: application/json,
             success: function(data) {
                 document.getElementById('results').innerHTML = data;
             }

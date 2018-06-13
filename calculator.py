@@ -12,10 +12,18 @@ app = Flask(__name__)
 
 @app.route('/rref', methods=['POST'])
 def rowReduce():
-    matrix = request.get_json()
+    matrix = request.values
     with open('rref_output.txt', 'w') as file:
-        file.write(json.dumps(matrix))
+        file.write(str(matrix.to_dict()))#json.dumps(matrix))
+        file.write(str(type(matrix)))
     return "OK"
 
 if __name__ == "__main__":
 	app.run()
+
+@app.route('/parseMatrix', methods=['POST'])
+def parseMatrix():
+    matrix = request.form.to_dict()
+    with open('parseMatrix.txt', 'w') as file:
+        file.write(matrix)
+    return "result"

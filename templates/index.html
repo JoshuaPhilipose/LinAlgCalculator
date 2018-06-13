@@ -32,11 +32,6 @@
                         <option>8</option>
                         <option>9</option>
                         <option>10</option>
-                        <option>11</option>
-                        <option>12</option>
-                        <option>13</option>
-                        <option>14</option>
-                        <option>15</option>
                     </select>
                 </div>
                 <div class="form-group col-md-1">
@@ -52,11 +47,6 @@
                         <option>8</option>
                         <option>9</option>
                         <option>10</option>
-                        <option>11</option>
-                        <option>12</option>
-                        <option>13</option>
-                        <option>14</option>
-                        <option>15</option>
                     </select>
                 </div>
                 <div class="col-md-10">
@@ -64,12 +54,16 @@
                 </div>
                 <button type="submit" class="btn btn-primary col-sm-2" onclick="createMatrix()">Go</button>
             </div>
+            <!--<form action="http://127.0.0.1:5000/parseMatrix" method="post">-->
+                <!--<input type="text" name="textMatrix">-->
+                <!--<input type="submit">-->
+            <!--</form>-->
             <div class="row">
                 <div id="matrix"></div>
                 <break>
                 Empty cells will be considered 0's!
             </div>
-            <div class="row">
+            <div class="row" id="calculateButton">
                 <button class="btn btn-primary col-sm-2" id="calculate" onclick="calculate()">Calculate!</button>
             </div>
             <div class="row" id="results">
