@@ -55,18 +55,11 @@ function calculate() {
             url: 'http://127.0.0.1:5000/rref',
             type: 'POST',
             data: JSON.stringify(test),
-            //contentType: application/json,
             success: function(data) {
-                document.getElementById('results').innerHTML = data;
+                document.getElementById('results').innerHTML = "Success";
             }
         });
 
-        // var request = new XMLHttpRequest();
-        // request.open('POST', 'http://127.0.0.1:5000/rref', true);
-        // request.onload = function() {
-        //     document.getElementById('results').innerHTML = request.responseText;
-        // };
-        // request.send()
     } else {
         document.getElementById('results').innerHTML = 'Invalid matrix, bub';
     }
