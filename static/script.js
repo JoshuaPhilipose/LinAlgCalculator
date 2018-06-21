@@ -1,3 +1,14 @@
+$(document).ready(function(){
+    // start up the SocketIO connection to the server
+    var socket = io.connect('http://127.0.0.1:5000/'); //'http://' + document.domain + ':' + location.port);
+    socket.on('connect', function() {
+        socket.emit('my event', 'Testing testing 1 2 3');
+    });
+    socket.on('my response', function(data) {
+        document.getElementById('results').innerHTML = data;
+    });
+});
+
 function createMatrix() {
     var rows = document.getElementById("matrixRowsSelect").value;
     var cols = document.getElementById("matrixColsSelect").value;
@@ -12,12 +23,10 @@ function createMatrix() {
         adder += '<br><br>';
     }
     document.getElementById('matrix').innerHTML = adder;
-    var calculateButton = ''
 }
 
 function calculate() {
-    document.getElementById('results').innerHTML = "Calculating...";
-    var matrix = [];
+    document.getElementById('matrix').innerHTML = "Calculating...";
     // var cells = document.getElementById('matrix').getElementsByTagName('input');
     // var matrixJSON = '{"matrix" : "[';
     //package json with rows, cols, and values sections
@@ -28,37 +37,42 @@ function calculate() {
     // matrix.push(matrixJSON);
 
     if (validateMatrix()) {
-        var matrixData = {
-            // "first_name": $("#first_name").val(),
-            // "last_name": $("#last_name").val(),
-            // "gt_id": $("#gtid").val(),
-            // "num_rush_nights": 1,
-            // "email": $("#email").val(),
-            // "major": $("#major").val(),
-            // "year": $("#year").val(),
-            // "phone_no": $("#phonenumber").val(),
-            // "texting": $("#cantext").val(),
-            // "dorm": $("#residence").val(),
-            // "rush_buddy": $("#buddy").val(),
-            // "rush_source": $("#howhear").val(),
-            // "akpsi_friend": $("#AKPsiFriendName").val(),
-            // "other_input": $("#OtherInput").val(),
-            "photo_url": "",
-            "status": "Mid-Cloud",
-            "rush_night_2": "true"
-        };
-        var test = {"rows" : 3, "cols" : 3, "values" : "1,2,3,4,5,6,7,8,9"};
-        matrix.push(test);
+        // var matrixData = {
+        //     // "first_name": $("#first_name").val(),
+        //     // "last_name": $("#last_name").val(),
+        //     // "gt_id": $("#gtid").val(),
+        //     // "num_rush_nights": 1,
+        //     // "email": $("#email").val(),
+        //     // "major": $("#major").val(),
+        //     // "year": $("#year").val(),
+        //     // "phone_no": $("#phonenumber").val(),
+        //     // "texting": $("#cantext").val(),
+        //     // "dorm": $("#residence").val(),
+        //     // "rush_buddy": $("#buddy").val(),
+        //     // "rush_source": $("#howhear").val(),
+        //     // "akpsi_friend": $("#AKPsiFriendName").val(),
+        //     // "other_input": $("#OtherInput").val(),
+        //     "photo_url": "",
+        //     "status": "Mid-Cloud",
+        //     "rush_night_2": "true"
+        // };
+        var cid = "12345";
+        var test = {"clientID" : cid, "rows" : 3, "cols" : 3, "values" : "1,2,3,4,5,6,7,8,9"};
 
         // MUST PUT FULL URL
-        $.ajax({
-            url: 'http://127.0.0.1:5000/rref',
-            type: 'POST',
-            data: JSON.stringify(test),
-            success: function(data) {
-                document.getElementById('results').innerHTML = "Success";
-            }
+        // $.ajax({
+        //     url: 'http://127.0.0.1:5000/rref',
+        //     type: 'POST',
+        //     data: JSON.stringify(test)
+        // });
+        var socket = io.connect('http://127.0.0.1:5000/');
+        socket.on('connect', function() {
+            socket.emit('calculate', test);
         });
+        socket.on('result', function(data) {
+            document.getElementById('results').innerHTML = data;
+        });
+
 
     } else {
         document.getElementById('results').innerHTML = 'Invalid matrix, bub';
