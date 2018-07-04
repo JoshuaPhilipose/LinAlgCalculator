@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO, send, emit
+import scipy.linalg
 import json
 
 app = Flask(__name__)
@@ -14,8 +15,16 @@ def index():
 
 @socketio.on('calculate')#, namespace='/cortex')
 def calculate(json):
+    clientID = json["clientID"]
+    function = json["func"]
+    rows = json["rows"]
+    cols = json["cols"]
+    values = json["values"]
+
+
+    
     with open('calculate_input.txt', 'w') as file:
-        file.write(str(json) + '\n')
+        file.write(str(json) + '\n' + clientID)
     emit('result', 'We\'re in business!')
 
 @socketio.on('my event')

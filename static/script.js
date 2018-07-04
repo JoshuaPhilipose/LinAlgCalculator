@@ -7,64 +7,52 @@ $(document).ready(function(){
     socket.on('my response', function(data) {
         document.getElementById('results').innerHTML = data;
     });
+    document.getElementById("calculate").disabled = true;
 });
 
 function createMatrix() {
     var rows = document.getElementById("matrixRowsSelect").value;
     var cols = document.getElementById("matrixColsSelect").value;
-    var cell1 = '<input type="number" class="col-sm-1" style="padding: 5px;" id="';
+    var tableWrapper1 = '<br><div class="col-md-4 col-md-offset-4"><table class="table table-sm table-bordered"><tbody>';
+    var cell1 = '<input type="number" class="col-sm-10" style="margin: 5px;" id="';
     var cell2 = '">';
-    var adder = '';
+    var tableWrapper2 = '</tbody></table></div>';
 
+    var adder = tableWrapper1;
     for (var i = 0; i < rows; i++) {
+        adder += '<tr>';
         for (var j = 0; j < cols; j++) {
-            adder += cell1 + i + j + cell2;
+            adder += '<td>' + cell1 + i + j + cell2 + '</td>';
         }
-        adder += '<br><br>';
+        adder += '</tr>';
     }
+    adder += tableWrapper2;
     document.getElementById('matrix').innerHTML = adder;
+    document.getElementById("calculate").disabled = false;
 }
 
 function calculate() {
     document.getElementById('matrix').innerHTML = "Calculating...";
-    // var cells = document.getElementById('matrix').getElementsByTagName('input');
-    // var matrixJSON = '{"matrix" : "[';
-    //package json with rows, cols, and values sections
-    // for (var i = 0; i < cells.length; i++) {
-    //
-    // }
-    // matrixJSON += ']"}';
-    // matrix.push(matrixJSON);
+    var cells = document.getElementById('matrix').getElementsByTagName('input');
+    var rows = document.getElementById("matrixRowsSelect").value;
+    var cols = document.getElementById("matrixColsSelect").value;
+    var func = document.getElementById("functionSelect").value;
+
+    var vals = '{"matrix" : "[';
+    // package json with rows, cols, and values sections
+    for (var i = 0; i < cells.length; i++) {
+
+    }
 
     if (validateMatrix()) {
-        // var matrixData = {
-        //     // "first_name": $("#first_name").val(),
-        //     // "last_name": $("#last_name").val(),
-        //     // "gt_id": $("#gtid").val(),
-        //     // "num_rush_nights": 1,
-        //     // "email": $("#email").val(),
-        //     // "major": $("#major").val(),
-        //     // "year": $("#year").val(),
-        //     // "phone_no": $("#phonenumber").val(),
-        //     // "texting": $("#cantext").val(),
-        //     // "dorm": $("#residence").val(),
-        //     // "rush_buddy": $("#buddy").val(),
-        //     // "rush_source": $("#howhear").val(),
-        //     // "akpsi_friend": $("#AKPsiFriendName").val(),
-        //     // "other_input": $("#OtherInput").val(),
-        //     "photo_url": "",
-        //     "status": "Mid-Cloud",
-        //     "rush_night_2": "true"
-        // };
+        // vals = "1,2,3,4,5,6,7,8,9"
         var cid = "12345";
-        var test = {"clientID" : cid, "rows" : 3, "cols" : 3, "values" : "1,2,3,4,5,6,7,8,9"};
+        var test = {"clientID" : cid,
+                    'func' : func,
+                    "rows" : 3,
+                    "cols" : 3,
+                    "values" : vals};
 
-        // MUST PUT FULL URL
-        // $.ajax({
-        //     url: 'http://127.0.0.1:5000/rref',
-        //     type: 'POST',
-        //     data: JSON.stringify(test)
-        // });
         var socket = io.connect('http://127.0.0.1:5000/');
         socket.on('connect', function() {
             socket.emit('calculate', test);
