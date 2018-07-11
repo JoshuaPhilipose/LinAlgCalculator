@@ -45,7 +45,7 @@ function calculate() {
     }
 
     if (validateMatrix()) {
-        // vals = "1,2,3,4,5,6,7,8,9"
+        vals = "1,2,3,4,5,6,7,8,9";
         var cid = "12345";
         var test = {"clientID" : cid,
                     'func' : func,
