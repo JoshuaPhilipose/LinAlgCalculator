@@ -14,40 +14,55 @@
 
 </head>
 <body>
-    <!--<br>-->
-    <!--<div class="col-md-4 col-md-offset-4">-->
-        <!--<table class="table table-sm table-bordered">-->
-            <!--<tbody>-->
-                <!--<tr>-->
-                    <!--<td>hi</td>-->
-                    <!--<td>hi</td>-->
-                    <!--<td>hi</td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                    <!--<td>hi</td>-->
-                    <!--<td>hi</td>-->
-                    <!--<td>hi</td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                    <!--<td>hi</td>-->
-                    <!--<td>hi</td>-->
-                    <!--<td>hi</td>-->
-                <!--</tr>-->
-            <!--</tbody>-->
-        <!--</table>-->
-    <!--</div>-->
     <div id="allContents" class="container h-100">
         <br>
-        <div class="row">
-            <div class="form-group col-md-offset-5 col-md-2">
-                <label for="functionSelect">Select a function</label>
-                <select class="form-control" id="functionSelect">
-                    <option>LU Factorization</option>
-                    <option>QR Factorization</option>
-                    <option>Row Reduction</option>
-                    <option>Gram-Schmidt</option>
-                </select>
+
+        <ul class="nav nav-tabs nav-justified">
+            <li class="active"><a data-toggle="tab" href="#basic">Basic</a></li>
+            <li><a data-toggle="tab" href="#factorization">Factorization</a></li>
+            <li><a data-toggle="tab" href="#orthogonality">Orthogonality</a></li>
+            <li><a data-toggle="tab" href="#miscellaneous">Miscellaneous</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="basic" class="tab-pane fade in active">
+                <h3>Basic matrix functions: </h3>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-secondary active" onclick="changeFunction('Row Echelon Form');">
+                        <input type="radio" name="options" id="ref" autocomplete="off" checked> Row Echelon Form
+                    </label>
+                    <label class="btn btn-secondary" onclick="changeFunction('Row Reduced Echelon Form');">
+                        <input type="radio" name="options" id="rref" autocomplete="off" checked> Row Reduced Echelon Form
+                    </label>
+                    <label class="btn btn-secondary" onclick="changeFunction('Matrix Multiplication');">
+                        <input type="radio" name="options" id="matrixmultiplication" autocomplete="off" checked> Matrix Multiplication
+                    </label>
+                </div>
             </div>
+            <div id="factorization" class="tab-pane fade">
+                <h3>Factorization functions: </h3>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-secondary active" onclick="changeFunction('LU Factorization');">
+                        <input type="radio" name="options" id="LU Factorization" autocomplete="off" checked> LU Factorization
+                    </label>
+                    <label class="btn btn-secondary" onclick="changeFunction('QR Factorization');">
+                        <input type="radio" name="options" id="QR Factorization" autocomplete="off"> QR Factorization
+                    </label>
+                </div>
+            </div>
+            <div id="orthogonality" class="tab-pane fade">
+                <h3>Orthogonality</h3>
+                <p>Some content in menu 2.</p>
+            </div>
+            <div id="miscellaneous" class="tab-pane fade">
+                <h3>Orthogonality</h3>
+                <p>Some content in menu 2.</p>
+            </div>
+        </div>
+
+        <br>
+        <div class="row">
+            <h4 id="selectionText">Selected: Row Echelon Form</h4>
         </div>
 
         <div class="row">

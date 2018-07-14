@@ -32,11 +32,10 @@ function createMatrix() {
 }
 
 function calculate() {
-    document.getElementById('matrix').innerHTML = "Calculating...";
     var cells = document.getElementById('matrix').getElementsByTagName('input');
     var rows = document.getElementById("matrixRowsSelect").value;
     var cols = document.getElementById("matrixColsSelect").value;
-    var func = document.getElementById("functionSelect").value;
+    var func = document.getElementById('selectionText').innerHTML.substring(10);
 
     var vals = '{"matrix" : "[';
     // package json with rows, cols, and values sections
@@ -45,12 +44,14 @@ function calculate() {
     }
 
     if (validateMatrix()) {
-        vals = "1,2,3,4,5,6,7,8,9";
+        // vals = "1,2,3,4,5,6,7,8,9";
+        vals = collectValues(rows, cols);
+        // document.getElementById('matrix').innerHTML = "Calculating " + func + " for " + vals;
         var cid = "12345";
         var test = {"clientID" : cid,
                     'func' : func,
-                    "rows" : 3,
-                    "cols" : 3,
+                    "rows" : rows,
+                    "cols" : cols,
                     "values" : vals};
 
         var socket = io.connect('http://127.0.0.1:5000/');
@@ -70,4 +71,19 @@ function calculate() {
 
 function validateMatrix() {
     return true;
+}
+
+function collectValues(rows, cols) {
+    var values = "";
+    for (var r = 0; r < rows; r++) {
+        for (var c = 0; c < cols; c++) {
+            var cellID = "" + r + c;
+            values += document.getElementById(cellID).value + ",";
+        }
+    }
+    return values;
+}
+
+function changeFunction(func) {
+    document.getElementById('selectionText').innerHTML = "Selected: " + func;
 }

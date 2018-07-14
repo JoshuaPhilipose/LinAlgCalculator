@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO, send, emit
-import scipy
-import scipy.linalg
+import brain
 import json
 
 app = Flask(__name__)
@@ -14,18 +13,23 @@ socketio = SocketIO(app)
 def index():
     return render_template('index.html')
 
-@socketio.on('calculate')#, namespace='/cortex')
+@socketio.on('calculate')
 def calculate(json):
-    clientID = json["clientID"]
-    function = json["func"]
-    rows = json["rows"]
-    cols = json["cols"]
+    clientID = json["clientID"] # String
+    function = json["func"] # String
+    rows = int(json["rows"]) # Convert both rows and cols to strings
+    cols = int(json["cols"])
     values = json["values"].split(",") # NOTE: The values are now individual strings stored in a list.
-    matrix = matrixify(rows, cols, values)
+    matrix = matrixify(rows, cols, values) # Stores the values in scipy/numpy matrix form as ints
 
-    with open('calculate_input.txt', 'w') as file:
-        file.write(str(json) + '\n' + clientID + '\n' + str(matrix))
-    emit('result', 'We\'re in business!')
+    result = reroute(function, matrix) # result is in dict form
+    finalResult = makeItPretty(result) # finalResult is in string/html form
+
+    # Emit HTML to be displayed
+    emit('result', finalResult)
+
+    # with open('calculate_input.txt', 'w') as file:
+    #     file.write(str(json) + '\n' + clientID + '\n' + str(matrix))
 
 @socketio.on('my event')
 def initial_connection(message):
@@ -42,6 +46,16 @@ def matrixify(rows, cols, values):
             row.append(int(values.pop(0))) #pops value at index 0
         matrix.append(row)
     return matrix
+
+def reroute(function, matrix):
+    if (function == "LU Factorization"):
+        return brain.LUfactorization(matrix)
+    else:
+        return "Sorry, this functionality is currently unavailable. Function attempted: " + function
+
+def makeItPretty(result):
+    # You're beautiful just the way you are! Except in string form
+    return str(result)
 
 if __name__ == '__main__':
     socketio.run(app)
