@@ -50,12 +50,25 @@ def matrixify(rows, cols, values):
 def reroute(function, matrix):
     if (function == "LU Factorization"):
         return brain.LUfactorization(matrix)
+    elif (function == "QR Factorization"):
+        return brain.QRFactorization(matrix)
+    # elif (function == "Row Echelon Form"):
+    #     return brain.ref(matrix)
+    # elif (function == "Row Reduced Echelon Form"):
+    #     return brain.rref(matrix)
     else:
-        return "Sorry, this functionality is currently unavailable. Function attempted: " + function
+        return "<p><br>Sorry, this functionality is currently unavailable. Function attempted: " + function + ".</p> <br> This site is still under development. Thank you for being an early user - feel free to leave feedback below!"
 
 def makeItPretty(result):
-    # You're beautiful just the way you are! Except in string form
-    return str(result)
+    if isinstance(result, dict):
+        resultString = '<br>'
+        for key in result.keys():
+            resultString += '<div class="row"><h5> ' + key + ": </h6>"
+            resultString += '<p>' + str(result[key]) + '</p>'
+            resultString +=  '</div>'
+        return resultString
+    else:
+        return str(result)
 
 if __name__ == '__main__':
     socketio.run(app)

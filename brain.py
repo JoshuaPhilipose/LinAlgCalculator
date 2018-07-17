@@ -5,6 +5,13 @@ import scipy.linalg
 # All functions will return dictionaries with the label of the result, then the result.
 # Back in calculator.py, this will be converted to proper HTML result format and then emitted back.
 
+def ref(matrix):
+    results = {}
+    return results
+
+def rref(matrix):
+    results = {}
+    return results
 
 def LUfactorization(matrix):
     results = {}
@@ -13,4 +20,8 @@ def LUfactorization(matrix):
     results['P'] = P
     results['L'] = L
     results['U'] = U
+    return results
+
+def QRFactorization(matrix):
+    results = {}
     return results

@@ -14,7 +14,7 @@ function createMatrix() {
     var rows = document.getElementById("matrixRowsSelect").value;
     var cols = document.getElementById("matrixColsSelect").value;
     var tableWrapper1 = '<br><div class="col-md-4 col-md-offset-4"><table class="table table-sm table-bordered"><tbody>';
-    var cell1 = '<input type="number" class="col-sm-10" style="margin: 5px;" id="';
+    var cell1 = '<input type="text" class="col-sm-10" style="margin: 5px;" id="';
     var cell2 = '">';
     var tableWrapper2 = '</tbody></table></div>';
 
@@ -37,16 +37,9 @@ function calculate() {
     var cols = document.getElementById("matrixColsSelect").value;
     var func = document.getElementById('selectionText').innerHTML.substring(10);
 
-    var vals = '{"matrix" : "[';
-    // package json with rows, cols, and values sections
-    for (var i = 0; i < cells.length; i++) {
-
-    }
 
     if (validateMatrix()) {
-        // vals = "1,2,3,4,5,6,7,8,9";
-        vals = collectValues(rows, cols);
-        // document.getElementById('matrix').innerHTML = "Calculating " + func + " for " + vals;
+        var vals = collectValues(rows, cols);
         var cid = "12345";
         var test = {"clientID" : cid,
                     'func' : func,
@@ -70,7 +63,7 @@ function calculate() {
 }
 
 function validateMatrix() {
-    return true;
+    return true; // lol
 }
 
 function collectValues(rows, cols) {

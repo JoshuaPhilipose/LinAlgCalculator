@@ -15,7 +15,9 @@
 </head>
 <body>
     <div id="allContents" class="container h-100">
-        <br>
+        <div class="alert alert-primary" role="alert">
+            Note: This site is still under construction and is up for testing and feedback purposes. Please feel free to use our LU Factorization tool, in the factorization tab.
+        </div>
 
         <ul class="nav nav-tabs nav-justified">
             <li class="active"><a data-toggle="tab" href="#basic">Basic</a></li>
@@ -28,7 +30,7 @@
             <div id="basic" class="tab-pane fade in active">
                 <h3>Basic matrix functions: </h3>
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-secondary active" onclick="changeFunction('Row Echelon Form');">
+                    <label class="btn btn-secondary" onclick="changeFunction('Row Echelon Form');">
                         <input type="radio" name="options" id="ref" autocomplete="off" checked> Row Echelon Form
                     </label>
                     <label class="btn btn-secondary" onclick="changeFunction('Row Reduced Echelon Form');">
@@ -42,7 +44,7 @@
             <div id="factorization" class="tab-pane fade">
                 <h3>Factorization functions: </h3>
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-secondary active" onclick="changeFunction('LU Factorization');">
+                    <label class="btn btn-secondary" onclick="changeFunction('LU Factorization');">
                         <input type="radio" name="options" id="LU Factorization" autocomplete="off" checked> LU Factorization
                     </label>
                     <label class="btn btn-secondary" onclick="changeFunction('QR Factorization');">
@@ -51,12 +53,19 @@
                 </div>
             </div>
             <div id="orthogonality" class="tab-pane fade">
-                <h3>Orthogonality</h3>
-                <p>Some content in menu 2.</p>
+                <h3>Orthogonality Functions: </h3>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-secondary" onclick="changeFunction('Orthogonal Basis');">
+                        <input type="radio" name="options" id="Orthogonal Basis" autocomplete="off" checked> Orthogonal Basis
+                    </label>
+                    <label class="btn btn-secondary" onclick="changeFunction('Orthonormal Basis');">
+                        <input type="radio" name="options" id="Orthonormal Basis" autocomplete="off"> Orthonormal Basis
+                    </label>
+                </div>
             </div>
             <div id="miscellaneous" class="tab-pane fade">
-                <h3>Orthogonality</h3>
-                <p>Some content in menu 2.</p>
+                <h3>Miscellaneous Functions</h3>
+                <p>Coming soon!</p>
             </div>
         </div>
 
@@ -117,9 +126,38 @@
             <div class="row" id="calculateButton">
                 <button class="btn btn-primary col-md-offset-5 col-sm-2" id="calculate" onclick="calculate()">Calculate!</button>
             </div>
-            <div class="row" id="results"></div>
         </div>
+        <div class="row">
+            <div class="col-md-12" id="results">
 
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-md-offset-3" style="padding-top: 5%">
+        <center><h3> - Feedback - </h3></center>
+        <form action="https://formspree.io/joshphilipose@gmail.com" method="POST">
+            <div class="form-group">
+                <label for="feedbackEmail">Email address</label>
+                <input type="email" class="form-control" id="feedbackEmail" placeholder="Your Email" name="Email">
+            </div>
+            <div class="form-group">
+                <label for="feedbackRating">What would you rate this calculator out of 5?</label>
+                <select class="form-control" id="feedbackRating" name="Rating">
+                    <option>Please select a value.</option>
+                    <option>1 - Needs work.</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5 - Amazing!</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="feedbackComments">Comments - Please let me know your thoughts & suggestions.</label>
+                <textarea class="form-control" id="feedbackComments" rows="4" name="Comments"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
     </div>
 <footer>
     <!-- Latest compiled JavaScript -->
