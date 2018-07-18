@@ -42,15 +42,16 @@ function calculate() {
     if (validateMatrix()) {
         var vals = collectValues(rows, cols);
         var cid = "12345";
-        var test = {"clientID" : cid,
+        var data = {"clientID" : cid,
                     'func' : func,
                     "rows" : rows,
                     "cols" : cols,
                     "values" : vals};
 
-        var socket = io.connect('http://127.0.0.1:5000/');
+        // var socket = io.connect('http://127.0.0.1:5000/');
+        var socket = io.connect('https://linalgcalculator.herokuapp.com/');
         socket.on('connect', function() {
-            socket.emit('calculate', test);
+            socket.emit('calculate', data);
         });
         socket.on('result', function(data) {
             document.getElementById('results').innerHTML = data;
