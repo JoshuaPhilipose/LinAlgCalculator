@@ -1,13 +1,14 @@
 $(document).ready(function(){
+    document.getElementById("calculate").disabled = true;
     // start up the SocketIO connection to the server
-    var socket = io.connect('http://127.0.0.1:5000/'); //'http://' + document.domain + ':' + location.port);
+    // var socket = io.connect('http://127.0.0.1:5000/'); //'http://' + document.domain + ':' + location.port);
+    var socket = io.connect('https://linalgcalculator.herokuapp.com/'); //use for production URL
     socket.on('connect', function() {
         socket.emit('my event', 'Testing testing 1 2 3');
     });
     socket.on('my response', function(data) {
         document.getElementById('results').innerHTML = data;
     });
-    document.getElementById("calculate").disabled = true;
 });
 
 function createMatrix() {
