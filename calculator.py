@@ -4,7 +4,7 @@ import brain
 import json
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'secret!'
+app.config['SECRET_KEY'] = 'thisisasupersecretkey!'
 socketio = SocketIO(app)
 
 # TODO: Have each method be self contained, calling only the other methods it needs.

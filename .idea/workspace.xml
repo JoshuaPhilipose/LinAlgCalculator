@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="acd6095d-b275-4107-af07-ee8ca834f661" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/static/script.js" afterPath="$PROJECT_DIR$/static/script.js" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" afterPath="$PROJECT_DIR$/templates/index.html" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -264,12 +262,12 @@
       <updated>1527200811098</updated>
       <workItem from="1527200817935" duration="45103000" />
       <workItem from="1528936123623" duration="50055000" />
-      <workItem from="1531509432623" duration="18434000" />
+      <workItem from="1531509432623" duration="19042000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="113592000" />
+    <option name="totallyTimeSpent" value="114200000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="2182" height="1402" extended-state="6" />
