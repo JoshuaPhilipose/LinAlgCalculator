@@ -17,7 +17,8 @@ def rref(matrix):
 
 def inverse(matrix):
     results = {}
-    results["Inverse"] = "Not currently supported"
+    A = scipy.array(matrix)
+    results["Inverse"] = scipy.linalg.inv(A)
     return results
 
 def LUfactorization(matrix):
@@ -29,8 +30,21 @@ def LUfactorization(matrix):
     results['U'] = U
     return results
 
+def SVDDecomposition(matrix):
+    results = {}
+    A = scipy.array(matrix)
+    U, S, VH = scipy.linalg.svd(A)
+    results["U"] = U
+    results["S"] = S
+    results["VH"] = VH
+    return results
+
 def QRFactorization(matrix):
     results = {}
+    A = scipy.array(matrix)
+    Q, R = scipy.linalg.qr(A)
+    results["Q"] = Q
+    results["R"] = R
     return results
 
 def evalues(matrix):
@@ -55,33 +69,40 @@ def onbasis(matrix):
 
 def determinant(matrix):
     results = {}
-    results["Determinant"] = "Not currently supported"
+    A = scipy.array(matrix)
+    results["Determinant"] = scipy.linalg.det(A)
     return results
 
 def trace(matrix):
     results = {}
-    results["Trace"] = "Not currently supported"
+    A = scipy.array(matrix)
+    results["Trace"] = scipy.linalg.trace(A)
     return results
 
 def norm(matrix):
     results = {}
-    results["Norm"] = "Not currently supported"
+    A = scipy.array(matrix)
+    results["Norm"] = scipy.linalg.norm(A)
     return results
 
 def condition(matrix):
     results = {}
-    results["Condition"] = "Not currently supported"
+    A = scipy.array(matrix)
+    results["Condition"] = scipy.linalg.cond(A)
     return results
 
 def rank(matrix):
     results = {}
-    results["Rank"] = "Not currently supported"
+    A = scipy.array(matrix)
+    results["Rank"] = scipy.linalg.matrix_rank(A)
     return results
 
 def signedlog(matrix):
     results = {}
-    results["Sign"] = "Not currently supported"
-    results["Log"] = "This isn't supported either!"
+    A = scipy.array(matrix)
+    sign, logdet = scipy.linalg.slogdet(A)
+    results["Sign"] = sign
+    results["Log Determinant"] = logdet
     return results
 
 def mmult(matrix):

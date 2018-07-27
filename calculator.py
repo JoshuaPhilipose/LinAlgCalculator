@@ -46,14 +46,42 @@ def matrixify(rows, cols, values):
     return matrix
 
 def reroute(function, matrix):
-    if (function == "LU Factorization"):
-        return brain.LUfactorization(matrix)
-    elif (function == "QR Factorization"):
-        return brain.QRFactorization(matrix)
-    # elif (function == "Row Echelon Form"):
+    # if (function == "Row Echelon Form"):
     #     return brain.ref(matrix)
     # elif (function == "Row Reduced Echelon Form"):
     #     return brain.rref(matrix)
+    if (function == "Inverse"):
+        return brain.inverse(matrix)
+    elif (function == "LU Factorization"):
+        return brain.LUfactorization(matrix)
+    elif (function == "QR Factorization"):
+        return brain.QRFactorization(matrix)
+    elif (function == "SVD Decomposition"):
+        return brain.SVDDecomposition(matrix)
+    # elif (function == "Find Eigenvalues"):
+    #     return brain.evalues(matrix)
+    # elif (function == "Find Eigenvectors"):
+    #     return brain.evectors(matrix)
+    elif (function == "Orthogonal Basis"):
+        return brain.obasis(matrix)
+    elif (function == "Orthonormal Basis"):
+        return brain.onbasis(matrix)
+    elif (function == "Determinant"):
+        return brain.determinant(matrix)
+    elif (function == "Trace"):
+        return brain.trace(matrix)
+    elif (function == "Norm"):
+        return brain.norm(matrix)
+    elif (function == "Condition"):
+        return brain.condition(matrix)
+    elif (function == "Rank"):
+        return brain.rank(matrix)
+    elif (function == "Signed Logarithm"):
+        return brain.QRFactorization(matrix)
+    # elif (function == "Matrix Multiplication"):
+    #     return brain.mmult(matrix)
+    # elif (function == "Ax = b"):
+    #     return brain.axb(matrix)
     else:
         return "<p><br>Sorry, this functionality is currently unavailable. Function attempted: " + function + ".</p> <br> This site is still under development. Thank you for being an early user - feel free to leave feedback below!"
 
