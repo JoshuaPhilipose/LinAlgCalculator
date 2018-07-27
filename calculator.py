@@ -33,8 +33,6 @@ def calculate(json):
 
 @socketio.on('my event')
 def initial_connection(message):
-    # with open('calculate_input.txt', 'w') as file:
-    #     file.write('Connected!')
     emit('my response', 'Connected to server.')
 
 

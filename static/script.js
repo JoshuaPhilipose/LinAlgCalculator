@@ -7,7 +7,8 @@ $(document).ready(function(){
         socket.emit('my event', 'Testing testing 1 2 3');
     });
     socket.on('my response', function(data) {
-        document.getElementById('results').innerHTML = data;
+        document.getElementById('notes').innerHTML = data;
+        socket.disconnect(0);
     });
 });
 
@@ -33,7 +34,7 @@ function createMatrix() {
 }
 
 function calculate() {
-    var cells = document.getElementById('matrix').getElementsByTagName('input');
+    document.getElementById('notes').innerHTML = "Calculating...";
     var rows = document.getElementById("matrixRowsSelect").value;
     var cols = document.getElementById("matrixColsSelect").value;
     var func = document.getElementById('selectionText').innerHTML.substring(10);
@@ -42,7 +43,7 @@ function calculate() {
     if (validateMatrix()) {
         var vals = collectValues(rows, cols);
         var cid = "12345";
-        var data = {"clientID" : cid,
+        var problem = {"clientID" : cid,
                     'func' : func,
                     "rows" : rows,
                     "cols" : cols,
@@ -51,10 +52,12 @@ function calculate() {
         // var socket = io.connect('http://127.0.0.1:5000/');
         var socket = io.connect('https://linalgcalculator.herokuapp.com/');
         socket.on('connect', function() {
-            socket.emit('calculate', data);
+            socket.emit('calculate', problem);
         });
         socket.on('result', function(data) {
+            document.getElementById('notes').innerHTML = "Results:";
             document.getElementById('results').innerHTML = data;
+            socket.disconnect(0);
         });
 
 

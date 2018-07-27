@@ -13,7 +13,7 @@
     <script src="../static/script.js"></script>
 
 </head>
-<body>
+<body style="background-color: #e5fffe">
     <div id="allContents" class="container h-100">
         <div class="alert alert-primary" role="alert">
             Note: This site is still under construction and is up for testing and feedback purposes. Please feel free to use our LU Factorization tool, in the factorization tab.
@@ -21,9 +21,10 @@
 
         <ul class="nav nav-tabs nav-justified">
             <li class="active"><a data-toggle="tab" href="#basic">Basic</a></li>
-            <li><a data-toggle="tab" href="#factorization">Factorization</a></li>
-            <li><a data-toggle="tab" href="#orthogonality">Orthogonality</a></li>
-            <li><a data-toggle="tab" href="#miscellaneous">Miscellaneous</a></li>
+            <li><a data-toggle="tab" href="#factorization">Factorizations/Decompositions</a></li>
+            <li><a data-toggle="tab" href="#eigenvalues">Eigenvalues & Orthogonality</a></li>
+            <li><a data-toggle="tab" href="#numbers">Numbers</a></li>
+            <li><a data-toggle="tab" href="#solve">Solve</a></li>
         </ul>
 
         <div class="tab-content">
@@ -36,8 +37,8 @@
                     <label class="btn btn-secondary" onclick="changeFunction('Row Reduced Echelon Form');">
                         <input type="radio" name="options" id="rref" autocomplete="off" checked> Row Reduced Echelon Form
                     </label>
-                    <label class="btn btn-secondary" onclick="changeFunction('Matrix Multiplication');">
-                        <input type="radio" name="options" id="matrixmultiplication" autocomplete="off" checked> Matrix Multiplication
+                    <label class="btn btn-secondary" onclick="changeFunction('Inverse');">
+                        <input type="radio" name="options" id="Inverse" autocomplete="off" checked> Inverse
                     </label>
                 </div>
             </div>
@@ -52,9 +53,15 @@
                     </label>
                 </div>
             </div>
-            <div id="orthogonality" class="tab-pane fade">
-                <h3>Orthogonality Functions: </h3>
+            <div id="eigenvalues" class="tab-pane fade">
+                <h3>Eigenvalue & Orthogonal Functions</h3>
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-secondary" onclick="changeFunction('Find Eigenvalues');">
+                        <input type="radio" name="options" id="Find Eigenvalues" autocomplete="off" checked> Find Eigenvalues
+                    </label>
+                    <label class="btn btn-secondary" onclick="changeFunction('Find Eigenvectors');">
+                        <input type="radio" name="options" id="Find Eigenvectors" autocomplete="off"> Find Eigenvectors
+                    </label>
                     <label class="btn btn-secondary" onclick="changeFunction('Orthogonal Basis');">
                         <input type="radio" name="options" id="Orthogonal Basis" autocomplete="off" checked> Orthogonal Basis
                     </label>
@@ -63,9 +70,39 @@
                     </label>
                 </div>
             </div>
-            <div id="miscellaneous" class="tab-pane fade">
-                <h3>Miscellaneous Functions</h3>
-                <p>Coming soon!</p>
+            <div id="numbers" class="tab-pane fade">
+                <h3>Misc. "Number" Functions: </h3>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-secondary" onclick="changeFunction('Determinant');">
+                        <input type="radio" name="options" id="Determinant" autocomplete="off" checked> Determinant
+                    </label>
+                    <label class="btn btn-secondary" onclick="changeFunction('Trace');">
+                        <input type="radio" name="options" id="Trace" autocomplete="off"> Trace
+                    </label>
+                    <label class="btn btn-secondary" onclick="changeFunction('Norm');">
+                        <input type="radio" name="options" id="Norm" autocomplete="off"> Norm
+                    </label>
+                    <label class="btn btn-secondary" onclick="changeFunction('Condition');">
+                        <input type="radio" name="options" id="Condition" autocomplete="off"> Condition
+                    </label>
+                    <label class="btn btn-secondary" onclick="changeFunction('Rank');">
+                        <input type="radio" name="options" id="Rank" autocomplete="off"> Rank
+                    </label>
+                    <label class="btn btn-secondary" onclick="changeFunction('Signed Logarithm');">
+                        <input type="radio" name="options" id="Signed Logarithm" autocomplete="off"> Signed Logarithm
+                    </label>
+                </div>
+            </div>
+            <div id="solve" class="tab-pane fade">
+                <h3> Assorted solving functions </h3>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-secondary" onclick="changeFunction('Matrix Multiplication');">
+                        <input type="radio" name="options" id="matrixmultiplication" autocomplete="off" checked> Matrix Multiplication
+                    </label>
+                    <label class="btn btn-secondary" onclick="changeFunction('Ax = b');">
+                        <input type="radio" name="options" id="axb" autocomplete="off"> Ax = b
+                    </label>
+                </div>
             </div>
         </div>
 
@@ -74,13 +111,12 @@
             <h4 id="selectionText">Selected: Row Echelon Form</h4>
         </div>
 
-        <div class="row">
-            <br>
-            <center>Please input your matrix size below:</center>
-            <br>
-        </div>
-
         <div id="createMatrix">
+            <div class="row">
+                <br>
+                <center>Please input your matrix size below:</center>
+                <br>
+            </div>
             <div class="row">
                 <div class="form-group col-md-offset-5 col-md-1">
                     <label for="matrixRowsSelect">Rows</label>
@@ -128,9 +164,10 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12" id="results">
-
-            </div>
+            <div id="notes"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-12" id="results"></div>
         </div>
     </div>
 
