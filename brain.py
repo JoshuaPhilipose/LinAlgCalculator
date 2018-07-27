@@ -87,7 +87,7 @@ def signedlog(matrix):
 def mmult(matrix):
     results = {}
     results["Resultant Matrix"] = "not supported"
-    retuurn results
+    return results
 
 def axb(matrix):
     results = {}
